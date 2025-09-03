@@ -1,7 +1,6 @@
 // FIX: Import JSX for type definitions.
 import { render } from 'preact';
 import { useState, useMemo, useEffect } from 'preact/hooks';
-import './index.css';
 
 // Define the structure for a single financial goal
 interface Goal {

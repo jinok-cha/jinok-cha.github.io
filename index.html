@@ -15,11 +15,14 @@
   }
 }
 </script>
+  <!-- Babel Standalone for in-browser transpilation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link rel="stylesheet" href="/index.css">
 </head>
 <body>
   <div id="root"></div>
-  <script type="module" src="index.tsx"></script>
+  <!-- Use text/babel and add presets to let Babel transpile the TSX file -->
+  <script type="text/babel" data-presets="typescript,react" data-type="module" src="index.tsx"></script>
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>
