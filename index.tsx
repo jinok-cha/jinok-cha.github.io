@@ -1,6 +1,7 @@
-// FIX: Import JSX for type definitions.
-import { render } from 'preact';
-import { useState, useMemo, useEffect } from 'preact/hooks';
+/** @jsx h */
+/** @jsxFrag Fragment */
+import { render, h, Fragment } from 'https://esm.sh/preact@10.22.1';
+import { useState, useMemo, useEffect } from 'https://esm.sh/preact@10.22.1/hooks';
 
 // Define the structure for a single financial goal
 interface Goal {
@@ -699,7 +700,6 @@ const App = () => {
                   {processedGoals.map((goal, index) => (
                     <tr 
                       key={goal.id}
-// FIX: The `draggable` attribute in JSX expects a boolean, not a string.
                       draggable={true}
                       onDragStart={(e) => handleDragStart(e, goal.id)}
                       onDragEnter={(e) => handleDragEnter(e, goal.id)}
@@ -710,9 +710,9 @@ const App = () => {
                     >
                       <td><input type="text" value={goal.name} onInput={e => handleGoalChange(goal.id, 'name', (e.target as HTMLInputElement).value)} placeholder={`목표 ${index + 1}`} /></td>
                       <td><input type="number" value={goal.timing} onInput={e => handleGoalChange(goal.id, 'timing', (e.target as HTMLInputElement).value)} step="1" /></td>
-                      <td><input type="number" value={goal.requiredFunds} onInput={e => handleGoalChange(goal.id, 'requiredFunds', (e.target as HTMLInputElement).value)} step={goal.name.includes('은퇴') ? 100 : 1000} /></td>
+                      <td><input type="text" value={formatNumber(goal.requiredFunds)} onInput={e => handleGoalChange(goal.id, 'requiredFunds', (e.target as HTMLInputElement).value)} /></td>
                       <td>{formatNumber(goal.futureValueRequired)}</td>
-                      <td><input type="number" value={goal.currentSavings} onInput={e => handleGoalChange(goal.id, 'currentSavings', (e.target as HTMLInputElement).value)} step="1000" /></td>
+                      <td><input type="text" value={formatNumber(goal.currentSavings)} onInput={e => handleGoalChange(goal.id, 'currentSavings', (e.target as HTMLInputElement).value)} /></td>
                       <td>{formatNumber(goal.futureValueCurrent)}</td>
                       <td>{formatNumber(goal.shortfall)}</td>
                       <td><input type="number" value={goal.savingStart} onInput={e => handleGoalChange(goal.id, 'savingStart', (e.target as HTMLInputElement).value)} step="1" /></td>
